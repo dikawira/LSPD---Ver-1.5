@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f1115" id="themeColorMeta">
+  <title>LSPD Officer Handbook</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            dark: {
+              900: '#0b0d10',
+              800: '#11141a',
+              700: '#1a1e27',
+              600: '#242a36',
+              500: '#323b4d',
+            },
+            police: {
+              gold: '#e2b13c',
+              blue: '#2b5ea7',
+              accent: '#3b82f6',
+              red: '#ef4444',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="h-screen flex overflow-hidden bg-dark-900 text-slate-200">
+
+  <!-- LSPD Welcome / Landing Screen -->
+  <section id="welcomeScreen" class="welcome-screen" aria-label="Welcome to LSPD Handbook">
+    <div class="welcome-grid" aria-hidden="true"></div>
+    <div class="welcome-glow welcome-glow-one" aria-hidden="true"></div>
+    <div class="welcome-glow welcome-glow-two" aria-hidden="true"></div>
+    <div class="welcome-content">
+      <div class="welcome-status"><span class="welcome-status-dot"></span> LOS SANTOS POLICE DEPARTMENT <span class="welcome-status-line"></span> SYSTEM ONLINE</div>
+      <div class="welcome-emblem" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" fill="#0B1A30" stroke="#E2B13C" stroke-width="3"/>
+          <circle cx="50" cy="50" r="39" stroke="#E2B13C" stroke-width="1" stroke-dasharray="2 3"/>
+          <path d="M50 17 L76 28 V51 C76 67 50 82 50 82 C50 82 24 67 24 51 V28 L50 17Z" fill="#1E3A8A" stroke="#E2B13C" stroke-width="2"/>
+          <path d="M50 29 L56 42 H44 L50 29Z" fill="#E2B13C"/><path d="M39 46H61V58H39Z" fill="#fff"/><path d="M46 46H54V58H46Z" fill="#dc2626"/>
+          <circle cx="38" cy="64" r="2" fill="#E2B13C"/><circle cx="50" cy="67" r="2" fill="#E2B13C"/><circle cx="62" cy="64" r="2" fill="#E2B13C"/>
+        </svg>
+      </div>
+      <p class="welcome-kicker">OFFICIAL FIELD REFERENCE</p>
+      <h1 class="welcome-title">WELCOME TO <span>LSPD</span><br>HANDBOOK</h1>
+      <p class="welcome-description">Your field guide to procedures, protocols, and the standards of the Los Santos Police Department.</p>
+      <div class="welcome-divider"><span></span><i></i><span></span></div>
+      <button id="openHandbookButton" class="open-handbook-button" type="button" onclick="openHandbook()">
+        <span class="open-button-icon" aria-hidden="true">↗</span> OPEN HANDBOOK <span class="open-button-arrow" aria-hidden="true">→</span>
+      </button>
+      <div class="welcome-credit">DESIGNED &amp; DEVELOPED BY <strong>BIGJ</strong></div>
+      <div class="welcome-bottomline"><span>PROTECT</span><b>•</b><span>SERVE</span><b>•</b><span>UPHOLD THE LAW</span></div>
+    </div>
+    <div class="welcome-corner welcome-corner-tl" aria-hidden="true"></div><div class="welcome-corner welcome-corner-br" aria-hidden="true"></div>
+  </section>
+
+  <!-- Mobile Overlay -->
+  <div id="mobileOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-72 bg-dark-800 border-r border-slate-800/80 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0">
+    
+    <!-- Brand Header -->
+    <div class="p-4 border-b border-slate-800/80 flex items-center gap-3">
+      <!-- LSPD Badge SVG Image Container -->
+      <div class="w-11 h-11 rounded-lg bg-dark-700/80 p-1 border border-police-gold/30 flex items-center justify-center shrink-0 shadow-lg shadow-black/40">
+        <svg class="w-full h-full" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer Ring -->
+          <circle cx="50" cy="50" r="46" fill="#0B1A30" stroke="#E2B13C" stroke-width="4"/>
+          <circle cx="50" cy="50" r="40" stroke="#E2B13C" stroke-width="1" stroke-dasharray="2 2"/>
+          <!-- Star Banner Background -->
+          <path d="M50 12 L58 30 L78 30 L62 42 L68 62 L50 50 L32 62 L38 42 L22 30 L42 30 Z" fill="#E2B13C" opacity="0.2"/>
+          <!-- Shield Body -->
+          <path d="M50 20 L75 30 V52 C75 68 50 82 50 82 C50 82 25 68 25 52 V30 L50 20 Z" fill="#1E3A8A" stroke="#E2B13C" stroke-width="2"/>
+          <path d="M50 23 L71 32 V50 C71 63 50 75 50 75 C50 75 29 63 29 50 V32 L50 23 Z" fill="#0F172A"/>
+          <!-- Eagle / Seal Icon Representation -->
+          <path d="M50 32 L55 40 H45 L50 32 Z" fill="#E2B13C"/>
+          <rect x="42" y="42" width="16" height="12" rx="1" fill="#DC2626"/>
+          <rect x="45" y="42" width="10" height="12" fill="#FFFFFF"/>
+          <rect x="48" y="42" width="4" height="12" fill="#1D4ED8"/>
+          <!-- Stars on Shield -->
+          <circle cx="38" cy="60" r="1.5" fill="#E2B13C"/>
+          <circle cx="50" cy="63" r="2" fill="#E2B13C"/>
+          <circle cx="62" cy="60" r="1.5" fill="#E2B13C"/>
+          <!-- Text Arc Representation -->
+          <path d="M 30 24 A 26 26 0 0 1 70 24" stroke="#E2B13C" stroke-width="1" fill="none"/>
+        </svg>
+      </div>
+      <div class="overflow-hidden">
+        <div class="font-black tracking-wider text-slate-100 text-base leading-none uppercase flex items-center gap-1.5">
+          LSPD <span class="text-[10px] bg-police-blue/40 text-blue-400 border border-blue-500/30 px-1.5 py-0.5 rounded font-mono">HQ</span>
+        </div>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">Officer Handbook</span>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="p-3 border-b border-slate-800/80">
+      <div class="relative">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500 text-sm">⌕</span>
+        <input id="searchInput" type="search" onkeyup="handleSearch(this.value)" placeholder="Cari... (10-4, Miranda, MDT)" 
+          class="w-full pl-8 pr-8 py-2 bg-dark-900/90 border border-slate-700/60 rounded-lg text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-police-accent transition-colors font-sans">
+        <kbd class="absolute right-2.5 top-2.5 text-[9px] bg-dark-700 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700">CTRL+K</kbd>
+      </div>
+    </div>
+
+    <!-- Navigation Menu Items -->
+    <nav id="navContainer" class="flex-1 overflow-y-auto p-3 space-y-6 text-xs font-medium">
+      <!-- Navigation will be rendered dynamically -->
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="p-3 bg-dark-900/60 border-t border-slate-800/80 text-[10px] text-slate-500 text-center">
+      <div class="font-mono text-slate-400">INTERNAL USE • ROLEPLAY SERVER</div>
+      <div class="mt-0.5">Los Santos Police Dept v1.5</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-dark-900">
+    
+    <!-- Topbar -->
+    <header class="h-14 glass-nav border-b border-slate-800/80 flex items-center justify-between px-4 z-30 shrink-0">
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSidebar()" class="md:hidden p-2 rounded-lg bg-dark-700 text-slate-300 hover:bg-dark-600 transition-colors" aria-label="Toggle Navigation">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+        <!-- Breadcrumb -->
+        <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
+          <span class="text-police-gold font-semibold">LSPD</span>
+          <span>/</span>
+          <span id="breadcrumbCategory" class="text-slate-400">STRUKTUR</span>
+          <span>/</span>
+          <span id="breadcrumbPage" class="text-slate-200 font-medium">Chain of Command</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" type="button" onclick="toggleTheme()" class="theme-toggle inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-700/70 bg-dark-700 text-slate-200 text-xs font-semibold transition-colors" aria-label="Ganti mode tampilan" title="Ganti mode tampilan">
+          <span id="themeIcon" aria-hidden="true">☀️</span><span id="themeLabel" class="hidden sm:inline">Mode Cerah</span>
+        </button>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> SYSTEM ONLINE
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Scrollable Content -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 max-w-7xl w-full mx-auto">
+      
+      <!-- Content Header Banner -->
+      <div class="glass-card rounded-2xl p-6 border border-slate-800/80 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+          <svg class="w-80 h-80 text-white" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 10 L85 25 V55 C85 75 50 90 50 90 C50 90 15 75 15 55 V25 L50 10 Z"/>
+          </svg>
+        </div>
+        
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-md bg-police-blue/20 text-police-accent text-xs font-mono border border-police-blue/30 mb-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-police-accent"></span> RESTRICTED DOCUMENT
+            </div>
+            <h1 id="pageTitle" class="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Chain of Command</h1>
+            <p id="pageSubtitle" class="text-xs md:text-sm text-slate-400 mt-1 max-w-2xl">Struktur hirarki kepemimpinan dan jenjang jabatan resmi Los Santos Police Department.</p>
+          </div>
+
+          <!-- Quick Stats Cards -->
+          <div class="flex items-center gap-3 shrink-0">
+            <div class="px-3 py-2 rounded-xl bg-dark-800/80 border border-slate-800 text-center min-w-[70px]">
+              <div id="moduleCount" class="text-lg font-bold text-police-gold font-mono">1</div>
+              <div class="text-[10px] text-slate-400 uppercase">Modul</div>
+            </div>
+            <div class="px-3 py-2 rounded-xl bg-dark-800/80 border border-slate-800 text-center min-w-[70px]">
+              <div class="text-lg font-bold text-blue-400 font-mono">10-C</div>
+              <div class="text-[10px] text-slate-400 uppercase">Kuis Code</div>
+            </div>
+            <div class="px-3 py-2 rounded-xl bg-dark-800/80 border border-slate-800 text-center min-w-[70px]">
+              <div class="text-lg font-bold text-emerald-400 font-mono">SOP</div>
+              <div class="text-[10px] text-slate-400 uppercase">Ver 2.5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Page Content Container -->
+      <div id="pageContent" class="space-y-6">
+        <!-- Content inserted via JS -->
+      </div>
+
+      <!-- Footer -->
+      <footer class="pt-8 pb-4 border-t border-slate-800/60 text-center text-xs text-slate-500 font-mono">
+        LOS SANTOS POLICE DEPARTMENT • TO PROTECT AND TO SERVE • ALL RIGHTS RESERVED
+      </footer>
+    </main>
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script src="script.js"></script>
+</body>
+</html>
